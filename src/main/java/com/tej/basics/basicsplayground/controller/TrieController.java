@@ -10,32 +10,29 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/data-structures")
-public class DataStructureController {
+@RequestMapping("/trie")
+public class TrieController {
     @Autowired
     TrieImpl trie;
 
-    @RequestMapping(path = "/trie/{word}", method = RequestMethod.POST)
+    @RequestMapping(path = "/{word}", method = RequestMethod.POST)
     public void insertWord(@PathVariable("word") String word) {
         trie.insert(word);
     }
 
-    @RequestMapping(path = "/trie/{word}/search", method = RequestMethod.GET)
+    @RequestMapping(path = "/{word}/search", method = RequestMethod.GET)
     public Boolean contains(@PathVariable("word") String word) {
         return trie.contains(word);
     }
 
-    @RequestMapping(path = "/trie/{word}/possibilities", method = RequestMethod.GET)
+    @RequestMapping(path = "/{word}/possibilities", method = RequestMethod.GET)
     public List<String> getPossibilities(@PathVariable("word") String word) {
         return trie.getPossibilities(word);
     }
 
-    @RequestMapping(path = "/trie", method = RequestMethod.GET)
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public List<String> getPossibilities() {
         return trie.all();
     }
-
-
-
 
 }

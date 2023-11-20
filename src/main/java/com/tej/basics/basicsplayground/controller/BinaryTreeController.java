@@ -4,6 +4,7 @@ import com.tej.basics.basicsplayground.topics.datastructures.tree.BinaryTree;
 import com.tej.basics.basicsplayground.topics.datastructures.tree.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -45,7 +46,7 @@ public class BinaryTreeController {
     *
     * */
 
-    @RequestMapping(value = "/visualize", method = RequestMethod.GET)
+    @RequestMapping(value = "/visualize", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String visualize(@ModelAttribute("model") ModelMap model) {
         List<Node> nodes = binaryTree.nodeList();
         model.addAttribute("nodes", nodes);

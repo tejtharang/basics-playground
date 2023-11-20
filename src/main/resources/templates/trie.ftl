@@ -1,14 +1,9 @@
 <html>
   <body>
     <pre class="mermaid">
-      graph TD
-       <#list model["nodes"] as node>
-          <#if node.getPlainInt()?? && node. ()?? && node.getLeft().getPlainInt()??>
-                ${node.getPlainInt()} --> ${node.getLeft().getPlainInt()}
-          </#if>
-          <#if node.getPlainInt()?? && node.getRight()?? && node.getRight().getPlainInt()??>
-                ${node.getPlainInt()} --> ${node.getRight().getPlainInt()}
-          </#if>
+      graph LR
+       <#list model["relationships"] as relationship>
+          ${relationship}
       </#list>
     </pre>
 

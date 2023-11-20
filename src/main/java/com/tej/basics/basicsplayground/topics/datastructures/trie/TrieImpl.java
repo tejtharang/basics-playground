@@ -2,15 +2,15 @@ package com.tej.basics.basicsplayground.topics.datastructures.trie;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
-public class TrieImpl implements TrieInterface{
+public class TrieImpl implements Trie {
     TrieNode node;
 
     TrieImpl() {
         node = new TrieNode();
+
     }
 
     @Override
@@ -75,8 +75,30 @@ public class TrieImpl implements TrieInterface{
             sb.append(c);
             possibilities.add(sb.toString());
             possibilities.addAll(dfs(sb.toString(), node.map.get(c)));
+            sb.setLength(sb.length() - 1);
         }
         return possibilities;
 
     }
+
+    @Override
+    public List<String> listRelationships() {
+        List<String> relationships = new ArrayList<>();
+        Queue<TrieNode> queue = new ArrayDeque<>();
+        queue.add(this.node);
+        while(!queue.isEmpty()) {
+            TrieNode node = queue.poll();
+            for(Character c : node.map.keySet()) {
+                TrieNode innerNode = node.map.get(c);
+                for(Character cInner : innerNode.map.keySet()) {
+                    relationships.add(node.id + "_" + c + "[" + c + "]" + " --> " + innerNode.id + "_" + cInner + "[" + cInner + "]");
+                }
+                queue.add(innerNode);
+            }
+        }
+        return relationships;
+
+    }
+
+
 }

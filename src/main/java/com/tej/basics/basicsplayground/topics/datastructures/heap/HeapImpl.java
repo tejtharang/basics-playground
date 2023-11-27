@@ -134,4 +134,22 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
     public T [] print() {
         return this.arr;
     }
+
+    @Override
+    public String visualize() {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i< this.filled; i++) {
+            T currentNode = this.arr[i];
+            int leftChildIndex = this.leftChildIndex(i);
+            if(leftChildIndex < this.filled) {
+                sb.append(i + "[" + this.arr[i] + "]" + " --> " + leftChildIndex + "[" + this.arr[leftChildIndex] + "]" +"\n");
+            }
+            int rightChildIndex = this.rightChildIndex(i);
+            if(rightChildIndex < this.filled) {
+                sb.append(i + "[" + this.arr[i] + "]" + " --> " + rightChildIndex + "[" + this.arr[rightChildIndex] + "]" +"\n");
+            }
+            sb.append(i + "[" + this.arr[i] + "]" + "\n");
+        }
+        return sb.toString();
+    }
 }

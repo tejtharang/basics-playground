@@ -13,4 +13,6 @@ public interface Heap<T extends Comparable<T>> {
     T [] print();
 
     T peek();
+
+    String visualize();
 }

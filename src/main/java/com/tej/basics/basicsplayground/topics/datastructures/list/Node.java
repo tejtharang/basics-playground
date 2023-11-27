@@ -5,9 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
-@Data
-@AllArgsConstructor
+import java.util.UUID;
+
 public class Node<T> {
     T item;
     Node<T> next;
+
+    String id;
+
+    public Node() {
+        id = UUID.randomUUID().toString();
+    }
 }

@@ -14,4 +14,6 @@ public interface LinkedList<T> {
 
     Integer getSize();
 
+    String visualize();
+
 }

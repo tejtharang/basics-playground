@@ -4,10 +4,8 @@ import com.tej.basics.basicsplayground.topics.datastructures.heap.Heap;
 import com.tej.basics.basicsplayground.topics.datastructures.heap.HeapImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/heap")
@@ -36,5 +34,11 @@ public class HeapController {
     @RequestMapping(path = "/peek", method = RequestMethod.GET)
     public @ResponseBody Integer peek() {
         return heap.peek();
+    }
+
+    @RequestMapping(path = "/visualize", method = RequestMethod.GET)
+    public String visualize(@ModelAttribute("model") ModelMap model) {
+        model.addAttribute("payload", heap.visualize());
+        return "heap";
     }
 }

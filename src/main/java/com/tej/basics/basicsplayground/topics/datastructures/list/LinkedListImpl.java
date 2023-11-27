@@ -1,5 +1,8 @@
 package com.tej.basics.basicsplayground.topics.datastructures.list;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class LinkedListImpl<T> implements LinkedList<T>{
 
     Node<T> head;
@@ -66,11 +69,27 @@ public class LinkedListImpl<T> implements LinkedList<T>{
     @Override
     public Integer getSize() {
         int size = 0;
-        Node<T> node = head;
+        Node<T> node = head.next;
         while(node != null) {
             node = node.next;
             size++;
         }
         return size;
+    }
+
+    @Override
+    public String visualize() {
+        Node<T> current = head.next;
+        StringBuilder sb = new StringBuilder();
+        while(current != null) {
+            sb.append(current.id + "[" + current.item + "]");
+            if(current.next != null) {
+                sb.append(" --> ");
+                sb.append(current.next.id + "[" + current.next.item + "]");
+                sb.append("\n");
+            }
+            current = current.next;
+        }
+        return sb.toString();
     }
 }

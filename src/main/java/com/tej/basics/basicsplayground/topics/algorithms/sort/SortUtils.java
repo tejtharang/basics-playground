@@ -17,6 +17,45 @@ public class SortUtils {
 
     }
 
+    public static <T extends Comparable<T>> void quickSort(T [] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    private static <T extends Comparable<T>> void quickSort(T [] arr, int start , int end) {
+        if(arr == null) {
+            throw new IllegalArgumentException("Input array cannot be null!");
+        }
+        if(arr.length == 0 || start > end)
+            return;
+
+        int i = start;
+        int swapIndex = i;
+        int pivot = end;
+
+        while(i < pivot) {
+
+            if(arr[i].compareTo(arr[pivot]) < 1 )  {
+                T temp = arr[i];
+                arr[i] = arr[swapIndex];
+                arr[swapIndex] = temp;
+                swapIndex++;
+            }
+            i++;
+        }
+        T temp = arr[pivot];
+        arr[pivot] = arr[swapIndex];
+        arr[swapIndex] = temp;
+
+        pivot = swapIndex;
+        quickSort(arr, start, pivot - 1);
+        quickSort(arr, pivot + 1, end);
+
+    }
+
+    private static <T extends Comparable<T>> void swap(T [] arr, int i, int j) {
+
+    }
+
     private static <T extends Comparable<T>> void merge(T [] arr, int start, int mid, int end) {
         int i = start;
         int j = mid + 1;

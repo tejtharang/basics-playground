@@ -19,4 +19,10 @@ public class SortUtilsTest {
         SortUtils.quickSort(arr);
         System.out.println(Arrays.toString(arr));
     }
+
+    @Test
+    public void test3() {
+       int x = 8;
+        System.out.println(x & x-1);
+    }
 }

@@ -33,3 +33,5 @@ jobs:
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25
     - name: Run build with Gradle Wrapper
       run: ./gradlew build
+    - name: Execute jar
+      run: sudo kill -9 `sudo lsof -t -i:80` & sudo java -jar /home/ubuntu/actions-runner/_work/basics-playground/basics-playground/build/libs/basics-playground-0.0.1-SNAPSHOT.jar &
